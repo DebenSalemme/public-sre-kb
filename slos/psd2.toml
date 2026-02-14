@@ -1,0 +1,20 @@
+
+service = "psd2"
+owner = "sre-team"
+env = "prod"
+review_cadence_days = 30
+
+[sli.availability]
+metric = '1 - (sum(rate(http_requests_total{job="psd2-api",status=~"5.."}[5m])) / sum(rate(http_requests_total{job="psd2-api"}[5m])))'
+objective = 0.995
+window = "30d"
+
+[sli.latency_p99]
+metric = 'histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket{job="psd2-api"}[5m])) by (le))'
+threshold_seconds = 1.2
+objective = 0.98
+window = "7d"
+
+[error_budget_policy]
+burn_alert_fast = "budget burn > 2% in 1h"
+burn_alert_slow = "budget burn > 5% in 24h"

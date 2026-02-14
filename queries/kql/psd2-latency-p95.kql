@@ -1,0 +1,3 @@
+AppRequests
+| where Cloud_RoleName == "psd2-api"
+| summarize p95 = percentile(DurationMs, 95) by bin(Timestamp, 5m)

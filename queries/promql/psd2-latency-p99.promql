@@ -1,0 +1,1 @@
+histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket{job="psd2-api"}[5m])) by (le))

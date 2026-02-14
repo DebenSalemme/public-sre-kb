@@ -1,0 +1,3 @@
+AppRequests
+| where Cloud_RoleName == "digital-vol-api"
+| summarize p95 = percentile(DurationMs, 95) by bin(Timestamp, 5m)

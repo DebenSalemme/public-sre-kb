@@ -1,0 +1,3 @@
+AppRequests
+| where Cloud_RoleName == "psd2-api" and toint(ResultCode) >= 500
+| summarize errors=count() by ResultCode, bin(Timestamp, 5m)

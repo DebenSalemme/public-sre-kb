@@ -1,0 +1,1 @@
+histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket{job="digital-vol-api"}[5m])) by (le))

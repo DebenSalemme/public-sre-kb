@@ -1,0 +1,24 @@
+
+groups:
+- name: psd2.latency
+  rules:
+  - alert: Psd2HighLatencyP99
+    expr: histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket{job="psd2-api"}[5m])) by (le)) > 1.2
+    for: 10m
+    labels:
+      severity: page
+      team: sre
+    annotations:
+      summary: "PSD2 p99 latency high"
+      runbook_url: "https://<your-site>/runbooks/psd2-latency-v1.0.0"
+- name: psd2.errors
+  rules:
+  - alert: Psd2HighErrorRate
+    expr: (sum(rate(http_requests_total{job="psd2-api",status=~"5.."}[5m])) / sum(rate(http_requests_total{job="psd2-api"}[5m]))) > 0.01
+    for: 5m
+    labels:
+      severity: page
+      team: sre
+    annotations:
+      summary: "PSD2 high 5xx error rate"
+      runbook_url: "https://<your-site>/runbooks/psd2-errors-v1.0.0"

@@ -1,0 +1,19 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="280" viewBox="0 0 1200 280">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#22c55e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="280" fill="url(#g)"/>
+  <g transform="translate(60,70)" fill="#ffffff">
+    <text x="0" y="0" font-size="44" font-family="Segoe UI, Roboto, Arial" font-weight="700">SRE Knowledge Base — Public Edition</text>
+    <text x="0" y="56" font-size="24" font-family="Segoe UI, Roboto, Arial">VOL & PSD2 · Grafana · Azure Monitor · OpenShift</text>
+  </g>
+  <g transform="translate(940,40)" fill="#ffffff" opacity="0.2">
+    <circle cx="60" cy="60" r="58" stroke="#fff" stroke-width="4" fill="none"/>
+    <rect x="120" y="10" width="60" height="100" rx="8"/>
+    <polygon points="20,200 80,160 140,200 80,240"/>
+  </g>
+</svg>

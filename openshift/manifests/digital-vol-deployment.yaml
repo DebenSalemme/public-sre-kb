@@ -1,0 +1,40 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: digital-vol-api
+  labels:
+    app: digital-vol-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: digital-vol-api
+  template:
+    metadata:
+      labels:
+        app: digital-vol-api
+    spec:
+      containers:
+      - name: digital-vol-api
+        image: your.registry/digital-vol-api:latest
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: "200m"
+            memory: "256Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: digital-vol-api
+spec:
+  selector:
+    app: digital-vol-api
+  ports:
+  - port: 80
+    targetPort: 8080

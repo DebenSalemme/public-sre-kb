@@ -1,0 +1,24 @@
+
+groups:
+- name: digital-vol.latency
+  rules:
+  - alert: DigitalVolHighLatencyP99
+    expr: histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket{job="digital-vol-api"}[5m])) by (le)) > 1.2
+    for: 10m
+    labels:
+      severity: page
+      team: sre
+    annotations:
+      summary: "Digital VOL p99 latency high"
+      runbook_url: "https://<your-site>/runbooks/digital-vol-latency-v1.0.0"
+- name: digital-vol.errors
+  rules:
+  - alert: DigitalVolHighErrorRate
+    expr: (sum(rate(http_requests_total{job="digital-vol-api",status=~"5.."}[5m])) / sum(rate(http_requests_total{job="digital-vol-api"}[5m]))) > 0.01
+    for: 5m
+    labels:
+      severity: page
+      team: sre
+    annotations:
+      summary: "Digital VOL high 5xx error rate"
+      runbook_url: "https://<your-site>/runbooks/digital-vol-errors-v1.0.0"

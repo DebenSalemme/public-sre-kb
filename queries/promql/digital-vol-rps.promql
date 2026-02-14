@@ -1,0 +1,1 @@
+sum(rate(http_requests_total{job="digital-vol-api"}[1m]))

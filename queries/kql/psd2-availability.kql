@@ -1,0 +1,4 @@
+AppRequests
+| where Cloud_RoleName == "psd2-api"
+| extend is_error = toint(ResultCode) >= 500
+| summarize availability = 1.0 - (todouble(sum(tobool(is_error))) / todouble(count())) by bin(Timestamp, 5m)

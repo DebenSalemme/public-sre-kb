@@ -1,0 +1,1 @@
+sum(rate(http_requests_total{job="psd2-api",status=~"5.."}[5m])) / sum(rate(http_requests_total{job="psd2-api"}[5m]))
